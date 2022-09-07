@@ -1,0 +1,85 @@
+body{
+    background: rgb(59,26,175);
+    background: radial-gradient(circle, rgba(59,26,175,1) 0%, rgba(94,9,121,1) 100%);
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    min-height: 100vh;
+}
+
+.container{
+    background-color: rgb(24, 24, 104);
+    display: inline-block;
+    margin-left: 27%;
+    margin-top: 1%;
+    padding: 2%;
+    border-radius: 1pc;
+
+    position: relative;
+    
+}
+
+.wrapper{
+    display: flex;
+    justify-content:space-around;
+}
+
+.left{
+    /* background-color: red; */
+    padding: 4%;
+    width: 20vw;
+    margin-right: 10%;
+}
+
+.right{
+    /* background-color: green; */
+    width: 20vw;
+    padding: 4%;
+}
+
+.title{
+    text-align: center;
+    font-weight: 700;
+    padding: 3%;
+    font-size: 1.5pc;
+}
+
+h2{
+    font-weight: 700;
+    padding-bottom: 5%;
+}
+
+.formulario{
+    padding: 5%;
+    padding-top: 2%;
+}
+
+form label, form button{
+    display: block;
+}
+
+form label{
+    padding: 2.5% 0;
+}
+
+form input{
+    width: 96%;
+    padding: 2%;
+    border: none;
+}
+
+form button{
+    margin: 2% 0;
+    width: 100%;
+    padding: 1%;
+}
+
+.paragrafo-resultado{
+    background-color: rgb(28, 138, 61);
+    padding: 0.5pc;
+}
+
+.bad{
+    background-color: rgb(138, 28, 28);
+    padding: 0.5pc;
+}
