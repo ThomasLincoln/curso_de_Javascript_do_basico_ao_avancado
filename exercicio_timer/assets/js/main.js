@@ -1,31 +1,38 @@
-let arrayDeCoisas = []
-
-function criaTarefa(valor, posicao){
-    const li = document.createElement('li');
-    const botao = document.createElement('button');
-    li.textContent = valor;
-    li.classList.add(posicao);
-    botao.textContent = 'concluir';
-    botao.classList.add("Apagar");
-    li.appendChild(botao);
-    return li;
-}
-
-
-function addValores(arrayDeCoisas){
-    const tarefasDiv = document.querySelector('.tarefas');
-    let i = 0;
-    for(let valor of arrayDeCoisas){
-        li = criaTarefa(valor, i);
-        i++;
-        tarefasDiv.appendChild(li);
-    }    
-}
 
 
 function escopo(){
     const form = document.querySelector('.formulario');
     const tarefasDiv = document.querySelector('.tarefas');
+    let arrayDeCoisas = []
+    
+
+    //----------------functions-------------------------
+    //função para criar a tarefa
+    function criaTarefa(valor, posicao){
+        const li = document.createElement('li');
+        const botao = document.createElement('button');
+        li.textContent = valor;
+        li.classList.add(posicao);
+        botao.textContent = 'concluir';
+        botao.classList.add("Apagar");
+        li.appendChild(botao);
+        return li;
+    }
+    
+    //funções para att a lista de tarefas
+    
+    function addValores(arrayDeCoisas){
+        const tarefasDiv = document.querySelector('.tarefas');
+        let i = 0;
+        for(let valor of arrayDeCoisas){
+            li = criaTarefa(valor, i);
+            i++;
+            tarefasDiv.appendChild(li);
+        }    
+    }
+    
+    //função do event listener do forms
+    
     function recebeEvento(e){
         e.preventDefault();
         let valor = document.querySelector("#caixa");
@@ -34,7 +41,7 @@ function escopo(){
         addValores(arrayDeCoisas)
         valor.value = ''
     }
-    form.addEventListener('submit', recebeEvento)
+    // função para apagar
     document.addEventListener('click', function(e){
         const el = e.target;
     
@@ -45,6 +52,10 @@ function escopo(){
             arrayDeCoisas.splice(posicao);
         }
     });
+    //------------------------------------------
+
+
+    form.addEventListener('submit', recebeEvento)
 }
 escopo()
 
