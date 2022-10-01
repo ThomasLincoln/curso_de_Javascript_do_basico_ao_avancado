@@ -1,10 +1,12 @@
 let arrayDeCoisas = []
 
-function criaTarefa(valor){
+function criaTarefa(valor, posicao){
     const li = document.createElement('li');
     const botao = document.createElement('button');
     li.textContent = valor;
-    botao.textContent = 'Apagar';
+    li.classList.add(posicao);
+    botao.textContent = 'concluir';
+    botao.classList.add("Apagar");
     li.appendChild(botao);
     return li;
 }
@@ -12,11 +14,14 @@ function criaTarefa(valor){
 
 function addValores(arrayDeCoisas){
     const tarefasDiv = document.querySelector('.tarefas');
+    let i = 0;
     for(let valor of arrayDeCoisas){
-        li = criaTarefa(valor)
+        li = criaTarefa(valor, i);
+        i++;
         tarefasDiv.appendChild(li);
     }    
 }
+
 
 function escopo(){
     const form = document.querySelector('.formulario');
@@ -30,6 +35,16 @@ function escopo(){
         valor.value = ''
     }
     form.addEventListener('submit', recebeEvento)
+    document.addEventListener('click', function(e){
+        const el = e.target;
+    
+        if(el.classList.contains('Apagar')){
+            posicao = el.parentElement.classList[0];
+            console.log(posicao)
+            el.parentElement.remove();
+            arrayDeCoisas.splice(posicao);
+        }
+    });
 }
 escopo()
 
