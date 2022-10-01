@@ -29,6 +29,8 @@ function escopo(){
             i++;
             tarefasDiv.appendChild(li);
         }    
+        const tarefasJson = JSON.stringify(arrayDeCoisas);
+        localStorage.setItem('tarefas', tarefasJson);
     }
     
     //função do event listener do forms
@@ -44,17 +46,16 @@ function escopo(){
     // função para apagar
     document.addEventListener('click', function(e){
         const el = e.target;
-    
         if(el.classList.contains('Apagar')){
             posicao = el.parentElement.classList[0];
             console.log(posicao)
             el.parentElement.remove();
             arrayDeCoisas.splice(posicao);
+            const tarefasJson = JSON.stringify(arrayDeCoisas);
+            localStorage.setItem('tarefas', tarefasJson);
         }
     });
     //------------------------------------------
-
-
     form.addEventListener('submit', recebeEvento)
 }
 escopo()
