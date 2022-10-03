@@ -10,7 +10,7 @@ body{
 .container{
     background-color: rgb(24, 24, 104);
     display: inline-block;
-    margin-left: 27%;
+    margin-left:35%;
     margin-top: 9%;
     padding: 2%;
     border-radius: 1pc;
@@ -36,19 +36,16 @@ p{
     padding: 2%;
 }
 
-.relogio{
-    text-align: center;
-    font-size: 7pc;
-}
-.buttons{
-    margin: 0pc 10pc;
+.tarefas{
+    margin: 1pc;
 }
 
-.buttons > button{
-    background-color: rgb(199, 190, 176);
-    border: none;
-    margin: 1pc;
-    padding: 0.5pc;
-    border-radius: 0.3pc;
-    cursor: pointer;
+.tarefas button{
+    margin-bottom: 0.3pc;
+    margin-left: 0.5pc;
+}
+li{
+    /* background-color: blue; */
+    margin-bottom: 1pc;
+    font-size: 1.4pc;
 }

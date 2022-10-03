@@ -1,80 +1,67 @@
-const relogio = document.querySelector('.relogio');
-const iniciar = document.querySelector('.iniciar');
-const pausar = document.querySelector('.pausar');
-const zerar = document.querySelector('.zerar');
-
-let seg = 0
-let min = 0
-let hr = 0
-let timer;
-let data = new Date()
-
-function numeroAEsquerda(num){
-    return num >= 10 ? num : `0${num}`
-}
-
-iniciar.addEventListener('click', function(event){
-    controladora('contar')
-});
-
-pausar.addEventListener('click', function(event){
-
-    controladora('parar')
-});
-
-zerar.addEventListener('click', function(event){
-    controladora('zerar')
-});
 
 
-function mostraHora(data){
-    let hora = numeroAEsquerda(data.getHours())
-    let minuto = numeroAEsquerda(data.getMinutes())
-    let segundo = numeroAEsquerda(data.getSeconds())
-    return `${hora}:${minuto}:${segundo}`
-}
+function escopo(){
+    const form = document.querySelector('.formulario');
+    const tarefasDiv = document.querySelector('.tarefas');
+    let arrayDeCoisas = []
+    
 
-function controladora(acao){
-    if(acao == 'contar'){
-        clearInterval(timer)
-        contar()
-        relogio.style.color = 'white'
-    }else if(acao == 'zerar'){
-        clearInterval(timer)
-        hr = 0; seg = 0; min = 0;
-        relogio.textContent = '00:00:00'
-        relogio.style.color = 'white'
-    }else if(acao == 'parar'){
-        clearInterval(timer)
-        relogio.style.color = 'red'
+    //----------------functions-------------------------
+    //função para criar a tarefa
+    function criaTarefa(valor, posicao){
+        const li = document.createElement('li');
+        const botao = document.createElement('button');
+        li.textContent = valor;
+        li.classList.add(posicao);
+        botao.textContent = 'concluir';
+        botao.classList.add("Apagar");
+        li.appendChild(botao);
+        return li;
     }
-}
-
-function attHora(segundo){
-    if(hr == 23 && min == 59 && segundo == 58){
-        parar()
+    
+    //funções para att a lista de tarefas
+    
+    function addValores(arrayDeCoisas){
+        const tarefasDiv = document.querySelector('.tarefas');
+        let i = 0;
+        for(let valor of arrayDeCoisas){
+            li = criaTarefa(valor, i);
+            i++;
+            tarefasDiv.appendChild(li);
+        }    
+        const tarefasJson = JSON.stringify(arrayDeCoisas);
+        localStorage.setItem('tarefas', tarefasJson);
     }
-    if(segundo<59){
-        segundo++
-    }else if(min < 59){
-        min++
-        segundo = 0
-    }else{
-        hr++
-        min = 0
-        segundo = 0
+    
+    //função do event listener do forms
+    
+    function recebeEvento(e){
+        e.preventDefault();
+        let valor = document.querySelector("#caixa");
+        arrayDeCoisas.unshift(valor.value);
+        tarefasDiv.textContent = ''
+        addValores(arrayDeCoisas)
+        valor.value = ''
     }
-    let data = new Date(`2020-12-20 ${hr}:${min}:${segundo}`)
-    return data
-
+    // função para apagar
+    document.addEventListener('click', function(e){
+        const el = e.target;
+        if(el.classList.contains('Apagar')){
+            posicao = el.parentElement.classList[0];
+            console.log(posicao)
+            el.parentElement.remove();
+            arrayDeCoisas.splice(posicao);
+            const tarefasJson = JSON.stringify(arrayDeCoisas);
+            localStorage.setItem('tarefas', tarefasJson);
+        }
+    });
+    //------------------------------------------
+    form.addEventListener('submit', recebeEvento)
 }
+escopo()
 
-function contar(){
-    timer = setInterval(function(){
-        dataAgora = attHora(seg)
-        console.log(mostraHora(dataAgora))
-        relogio.textContent = mostraHora(dataAgora)
-        seg++
-    }, 1000)
-}
 
+
+// const li = criaTarefa(valor);
+
+// li.textContent = 'opa'
