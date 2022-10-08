@@ -39,7 +39,8 @@ let obj = {nome: "thomas", sobrenome: 'Lincoln', idade:19}
 
 funcaoNome(obj)
 
-// também temos o rest operator
+// também temos o rest operator, usanbdo o ...args podemos acessar todos os argumentos em 
+// qualquer tipo de função.
 
 const conta = (...args) =>{
     console.log(args);
