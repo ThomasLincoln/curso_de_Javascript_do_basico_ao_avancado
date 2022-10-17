@@ -1,0 +1,41 @@
+body{
+    background: rgb(59,26,175);
+    background: radial-gradient(circle, rgba(59,26,175,1) 0%, rgba(94,9,121,1) 100%);
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    min-height: 100vh;
+}
+
+.container{
+    background-color: rgb(24, 24, 104);
+    display: inline-block;
+    margin-left: 33%;
+    margin-top: 6%;
+    padding: 2%;
+    border-radius: 1pc;
+
+    position: relative;
+    
+}
+
+input{
+    width: 93%;
+    margin-left: 0.5pc;
+    text-align: right;
+    font-size: 1em;
+}
+
+.btn{
+    padding: 0.5pc 2pc;
+    margin: 0.5pc;
+    width: 1pc;
+    font-size: 1em;
+    border: none;
+    border-radius: 0.2pc;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgb(98, 100, 102);
+}
