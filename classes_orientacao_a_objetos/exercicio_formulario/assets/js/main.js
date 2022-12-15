@@ -1,64 +1,69 @@
-class ValidaFormulario{
-    constructor(){
-        this.formulario = document.querySelector(".formulario");
-        this.eventos();
+class ValidaFormulario {
+    constructor() {
+      this.formulario = document.querySelector('.formulario');
+      this.eventos();
+    }
+  
+    eventos() {
+      this.formulario.addEventListener('submit', e => {
+        this.handleSubmit(e);
+      });
+    }
+  
+    handleSubmit(e) {
+      e.preventDefault();
+      this.camposSaoValidos();
+    }
+    
+    camposSaoValidos(){
+        let valida = true;
+
+        for(let campo of this.formulario.querySelectorAll(".error-text")){
+            campo.remove();
+        }
+    
+        for(let campo of this.formulario.querySelectorAll(".validar")){
+            const label = campo.previousElementSibling.innerText;
+            if(!campo.value){
+                this.criaErro(campo, `${label} está vazio`);
+                valida = false;
+            }else if(campo.classList.contains('usuario')){
+
+                let regex = /^[a-zA-Z0-9]{3,12}$/
+                if(regex.test(campo.value)){
+                    console.log("usuario inválido");
+                    valida = false;
+                }
+            }
+            
+            // if(campo.classList.contains('usuario')){
+                // }
+                // if(campo.classList.contains('usuario')){
+                    // const validaUser = this.verificaUser(campo);
+                    // if(!validaUser){
+                    // console.log(campo);
+                    // this.criaErro(campo, `${label} está vazio`);
+                // }
+            // }
+        }
     }
 
-    eventos(){
-        this.formulario.addEventListener('submit', e =>{
-            this.handleSubmit(e);
-        })
-    }
-
-    handleSubmit(e){
-        e.preventDefault();
-        this.nome = document.querySelector(".nome").value;
-        this.sobrenome = document.querySelector(".sobrenome").value;
-        this.cpf = document.querySelector(".cpf").value;
-        this.usuario = document.querySelector(".usuario").value;
-        this.senha = document.querySelector(".senha").value;
-        this.verifySenha = document.querySelector(".repetir-senha").value;
-        this.checaCampoVazio();
-        this.checaUser();
-        this.checaSenha();
-    }
-
-    checaUser(){
+    verificaUser(campo){
+        // let validaUser = true;
         let regex = /^[a-zA-Z0-9]{3,12}$/
-        if(regex.test(this.usuario)){
+        if(regex.test(campo.innerText)){
             console.log("usuario inválido");
+            validaUser = false;
         }
+        // return validaUser;
     }
 
-    checaSenha(){
-        let regex2 = /^{6,12}$/ 
-        if(regex2.test(this.senha) || regex2.test(this.verifySenha)){
-            console.log("senha muito fraca");
-        }else if(this.senha !== this.verifySenha){
-            console.log("senhas diferentes");
-        }
-    }
+    criaErro(campo, msg){
 
-    checaCampoVazio(){
-        if(this.nome === ''){
-            console.log('nome vazio')
-        }
-        if(this.sobrenome === ''){
-            console.log('sobrenome vazio')
-        }
-        if(this.cpf === ''){
-            console.log('cpf vazio')
-        }
-        if(this.usuario === ''){
-            console.log('usuario vazio')
-        }
-        if(this.senha === ''){
-            console.log('senha vazio')
-        }
-        if(this.verifySenha === ''){
-            console.log('senha vazio')
-        }
-        // console.log(this.nome)
+        const div = document.createElement('div');
+        div.innerHTML = msg;
+        div.classList.add('error-text');
+        campo.insertAdjacentElement('afterend', div); 
     }
 }
 
