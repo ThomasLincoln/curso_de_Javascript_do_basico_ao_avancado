@@ -68,24 +68,24 @@ class ValidaFormulario {
       e.preventDefault();
       let campos = this.camposSaoValidos();
       let cpf = this.verificaCpf();
-      let senha = this.verificaSenha();
-      if(senha && cpf && campos){
-        alert('opa')
-      }
+    //   let senha = this.verificaSenha();
+    //   if(senha && cpf && campos){
+    //     alert('opa')
+    //   }
     }
     
-    verificaSenha(){
-        const senha = this.formulario.querySelector(".senha");
-        const senha2 = this.formulario.querySelector(".repetir-senha");
-        let result = true;
-        let regex = /^{6,12}$/;
+    // verificaSenha(){
+    //     const senha = this.formulario.querySelector(".senha");
+    //     const senha2 = this.formulario.querySelector(".repetir-senha");
+    //     let result = true;
+    //     let regex = /^{6,12}$/;
 
-        if(senha.value != senha2.value && !regex.test(senha.value) || !regex.text(senha2.value)){
-            alert("aaa")
-            result = false;
-        }
-        return result;
-    }
+    //     if(senha.value != senha2.value && !regex.test(senha.value) || !regex.text(senha2.value)){
+    //         alert("aaa")
+    //         result = false;
+    //     }
+    //     return result;
+    // }
 
     camposSaoValidos(){
         let valida = true;
