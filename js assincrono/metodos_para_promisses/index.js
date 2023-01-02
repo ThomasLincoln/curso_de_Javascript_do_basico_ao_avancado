@@ -6,13 +6,12 @@ function aleatorio(min, max){
 
 
 function esperaAi(msg, tempo){
-    return new Promise((resolve, reject) =>{
-        if(typeof(msg) !== "string"){
-            reject(false);
-            return
-        }
-        
+    return new Promise((resolve, reject) =>{        
         setTimeout(()=>{
+            if(typeof(msg) !== "string"){
+                reject("CAI NO ERRO");
+                return
+            }
             // console.log(msg);
             resolve(msg.toUpperCase() + " passei na promisse");
             return;
