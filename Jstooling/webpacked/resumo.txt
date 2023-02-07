@@ -1,0 +1,13 @@
+então, em poucas palavras, o webpack faz todo o processo de converter os nossos arquivo
+js em um bundle com todos eles convertidos para uma forma de js puro, permitindo que todos 
+navegadores possam entender o js.
+
+
+Indo mais a fundo, nem todos os navegadores entendem as funções que usamos no javascript diariamente, com isso nós
+precisamos do seguinte, de um reinterpretador de código que irá transformar o nosso js "simplificado" em js puro, assim
+permitindo que todos os navegadores o entendam. Mas como fazemos isso? bem, usando o wepack primeiramente que irá 
+permitir que nós particionamos nosso javascript em modulos, o que será mais aprofundadado em outra aula. E com isso
+ele converte todos esses modulos usando babel (é preciso configurar e dizer para ele que voce quer que ele faça isso),
+assim todos os seus arquivos.js irão ser compreendidos.
+
+
