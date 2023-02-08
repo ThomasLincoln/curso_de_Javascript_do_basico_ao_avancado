@@ -87,3 +87,49 @@ O export tem como função permitir que outros códigos importem os objetos impo
 
 Assim como o import, existem inúmeras formas de se exportar um objeto.
 
+Mas antes de irmos para as formas de importar, você precisa entender que existem dois tipos de exportação, as **explícitas** e a **default**. 
+
+
+### Exportações explícitas
+
+```Js
+// exporta recursos declarados anteriomente
+export { myFunction, myVariable };
+
+// exporta recursos individuais (pode exportar var, let,
+// const, function, class)
+export let myVariable = Math.sqrt(2);
+export function myFunction() { ... };
+```
+
+Você pode exportar objetos previamente declarados, ou adcionar a palavra *export* antes da sua declação
+
+Podem haver de 0 a N exportações desse tipo.
+
+> Durante a importação é obrigatório usar o mesmo nome que o objeto tinha na exportação.
+
+>A renomeação de importação também funciona com exportações explícitas.
+
+---
+### Exportações default
+
+```Js
+// exporta um recurso declarado anteriormente como padrão
+export { myFunction as default };
+
+// exporta recursos individuais como padrão
+export default function () { ... }
+export default class { .. }
+```
+Essa é a exportação padrão, só pode haver uma por arquivo e seu nome na importação não precisa ser igual ao da sua exportação. 
+
+```Js
+// arquivo test.js
+let k; export default k = 12;
+```
+
+```Js
+// algum outro arquivo
+import m from './test'; // note que temos a liberdade de usar import m ao invés de import k, porque k era uma exportaçào padrão
+console.log(m);        // vai retornar log 12
+```
