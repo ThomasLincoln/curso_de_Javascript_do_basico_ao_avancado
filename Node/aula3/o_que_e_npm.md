@@ -47,7 +47,7 @@ O package.json também suporta alguns scripts, que podem ser rodados localmente 
 
 Os scripts *eslint*, *prettier*, *ncc* e *jest* são instalados localmente na sua pasta *node_modeules*. É possivel colocar quaisquer códigos, até algum código especifico que você use para iniciar seu projeto como um webpack por exemplo.
 
-> Para rodar esses scripts, você deve usar npm (nome do script).]
+> Para rodar esses scripts, você deve usar npm (nome do script).
 
 ## dependences e devDependences
 

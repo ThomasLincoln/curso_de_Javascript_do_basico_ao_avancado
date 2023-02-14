@@ -1,0 +1,1 @@
+Basicamente nessa aula ele ensina a listar arquivos com node e tudo mais, mas aparententemente isso só é usado para log
