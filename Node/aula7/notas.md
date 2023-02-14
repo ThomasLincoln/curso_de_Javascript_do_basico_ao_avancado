@@ -1,0 +1,1 @@
+o nodemon é uma forma de você ter um monitoramento de alterações de uma forma automática no express
