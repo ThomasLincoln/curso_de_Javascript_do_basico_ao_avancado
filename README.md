@@ -72,3 +72,17 @@ exports.paginaInicial = (req, res) => {
     res.render('index');
 }
 ```
+---
+## Static
+
+Arquivos estáticos são por exemplo, seus arquivos html, css ou até mesmo o bundle js. 
+
+Para usarmos, isso primeiro nós precisamos configurar no nosso arquivo principal:
+
+```Js
+app.use(express.static(path.resolve(__dirname, '..', 'public')));
+
+```
+Nesse caso, nossos arquivos estaticos ficaram na pasta public, assim, nós podemos usar conteúdos estáticos. 
+
+Para acesar no link, você pode só adcionar `/exemplo.html`.
