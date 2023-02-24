@@ -1,6 +1,6 @@
  const express = require('express');
  const route = express.Router();
- const homeController = require('./controllers/controllersMenu')
+ const homeController = require('./src/controllers/controllersMenu')
 
  // Rotas da home
 route.get('/', homeController.paginaInicial)
