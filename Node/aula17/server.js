@@ -1,51 +1,46 @@
+
+// *! arquivos relacionados a variaveis que devem ser ocultas, coisas relacionadas ao ambiente de desenvolvimento
 require('dotenv').config();
 
-// * importanto express para facilitar no uso de requisições
+// * inicializar express
 const express = require('express')
-
-// * import de middlwares
-const {middlewareGlobal, checkCSRFError, csrfMiddleware} = require('./src/middlewares/middleware')
-
-// * mongoose é para podermos usar o mongodb
-const mongoose = require('mongoose');
-
-// * configurações da sessão
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-
 const app = express()
-mongoose.set('strictQuery', false);
 
+// * mongoose é para podermos usar o mongodb, ele que irá modelar a nossa base de dados
+const mongoose = require('mongoose');
 // * conectando ao mongodb
+mongoose.set('strictQuery', false);
 mongoose.connect(process.env.CONNECTIONSTRING)
     .then(() =>{
         app.emit('pronto');
     })
     .catch(e => console.log(e))
 
-
-
-// * configurações do flash
+// * usado para reconhecer o navegador do user
+const session = require('express-session');
+// * falar pra sessão vai ser salva no banco de dados
+const MongoStore = require('connect-mongo');
+// * flash autodestrutivas
 const flash = require('connect-flash')
-
-
-// * configurações das rodas e middlewares
+// * são as rotas do nosso site, ele que tem as requisições e tal
 const routes = require('./routes')
+// * um role pra trabalhar com caminhos
 const path = require('path')
-
-// * pacote de segurança recomendado pelo express
+// * segurança
 const helmet = require('helmet');
-app.use(helmet())
-
-
-// * csurf, pacote de segurança contra pessoas postando coisas de fora e meu site aceitando
+// * tokens para os formulários
 const csurf = require('csurf')
+// * nossos middlewares
+const {middlewareGlobal, checkCSRFError, csrfMiddleware} = require('./src/middlewares/middleware')
 
-
-// * setando o conteudo estatico 
+// usando o helmet
+app.use(helmet())
+// * permitindo que enviemos formulários para o site
 app.use(express.urlencoded({extended: true}))
+// * permitir que enviemos jscon para o site
+app.use(express.json())
+// * configura o acesso a arquivos estáticos de forma direta
 app.use(express.static(path.resolve(__dirname, 'public')));
-
 
 // * configurando as opções da sessão (express-session)
 const sessionOptions = session({
@@ -63,12 +58,13 @@ const sessionOptions = session({
 app.use(sessionOptions);
 app.use(flash())
 
-// * setando as views
+// * setando o caminho das views
 app.set('views', path.resolve(__dirname,'src', 'views'));
+// * configurando a engine que nós usamos para renderizar isso
 app.set('view engine', 'ejs')
 
-// * adcionando ao app as rotas de requisições
 app.use(csurf())
+// * adcionando ao app as rotas de middlewares
 app.use(csrfMiddleware)
 app.use(checkCSRFError)
 app.use(middlewareGlobal)
