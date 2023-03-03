@@ -1,0 +1,13 @@
+        <table class="table my-3">
+          <%contatos.forEach((contatos) =>{ %>
+            
+          <%})%>
+            <tr>
+              <td><%= contato.nome%></td>
+              <td><%= contato.sobrenome%></td>
+              <td><%= contato.phone %></td>
+              <td><%= contato.email%></td>
+              <td><a href="/contato/index/<%=contato._id%>">Editar</a></td>
+              <td><a class="text-danger" href="/contato/delete/<%=contato._id%>">Deletar</a></td>
+            </tr> 
+        </table>

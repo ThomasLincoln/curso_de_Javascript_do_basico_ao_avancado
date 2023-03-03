@@ -1,0 +1,99 @@
+<%- include('includes/head')%> <%- include('includes/nav')%>
+
+<div class="container">
+  <div class="row">
+    <div class="cow-lg-2"></div>
+    <div class="cow-lg-8 my-3">
+      <h1 class="text-center">Se cadastre ou faça login</h1>
+      <p class="text-center lead">Faça login ou crie sua conta abaixo</p>
+      <%- include('includes/messages') %>
+      <%- include('includes/messagesLogin') %>
+
+      <div class="row">
+        <div class="col-lg">
+          <h4>Faça seu Cadastro</h4>
+          <p>Se você é novo aqui, use isso</p>
+
+          <form class="form-cadastro" action="/login/register" method="post">
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+
+            <!-- ? Nome do user -->
+            <div class="mb-3">
+              <label for="Nome" class="form-label">Nome</label>
+              <input
+                name="name"
+                type="text"
+                id="Nome"
+                class="form-control"
+                aria-describedby="nameOfUser"
+              />
+              <div id="Nome" class="form-text"></div>
+            </div>
+
+            <!-- ? Email do user -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                class="form-control"
+                aria-describedby="emailHelp"
+              />
+              <div id="email" class="form-text"></div>
+            </div>
+
+            <!-- ? Senha do user -->
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"
+                >Senha</label
+              >
+              <input name="password" type="password" class="form-control" />
+            </div>
+
+            <!-- ? Confirmar Senha do user -->
+            <div class="mb-3">
+              <label for="ConfirmarSeha" class="form-label"
+                >Confirme a senha</label
+              >
+              <input name="password2" type="password" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </form>
+        </div>
+
+        <div class="col-lg">
+          <h4>Faça Login</h4>
+          <p>Se você já tem uma conta, use esse forms</p>
+
+          <form class="form-login" action="/login/logar" method="post">
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                aria-describedby="emailHelp"
+              />
+              <div id="emailHelp" class="form-text"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label"
+                >Senha</label
+              >
+              <input name="password" type="password" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="cow-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer')%>
