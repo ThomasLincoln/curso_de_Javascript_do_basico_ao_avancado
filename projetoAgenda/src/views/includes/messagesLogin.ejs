@@ -1,0 +1,11 @@
+<%if(errorsLogin.length > 0){ %>
+<div class="row">
+  <div class="col my-3">
+    <div class="alert alert-danger">
+      <% errorsLogin.forEach(erro => { %> 
+        <%= erro %> <br />
+      <% }); %>
+    </div>
+  </div>
+</div>
+<% } %> 

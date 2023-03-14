@@ -1,0 +1,78 @@
+<%- include('includes/head')%> <%- include('includes/nav')%>
+
+<div class="container">
+  <div class="row">
+    <div class="cow-lg-2"></div>
+    <div class="cow-lg-8 my-3">
+      <h1 class="text-center">Contato</h1>
+      <p class="text-center lead">Crie ou Edite seu contato</p>
+      <%- include('includes/messages.ejs')%>
+
+      <%if (contato._id) {%>
+        <form action="/contato/edit/<%=contato._id%>" method="post">
+      <%}else { %>
+        <form action="/contato/register" method="post">
+      <%}%>
+          
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+        <!-- nome -->
+        <div class="mb-3">
+          <label for="Nome" class="form-label">Nome</label>
+          <input
+            value="<%=contato.nome%>"
+            name="nome"
+            type="text"
+            class="form-control"
+            id="Nome"
+            aria-describedby="nome"
+          />
+          <div id="Nome" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="sobrenome" class="form-label">Sobrenome</label>
+          <input
+            value="<%=contato.sobrenome%>"
+            name="sobrenome"
+            type="text"
+            class="form-control"
+            id="sobrenome"
+          />
+          <div id="sobrenome" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input
+            value="<%=contato.email%>"
+            name="email"
+            type="email"
+            class="form-control"
+            id="email"
+          />
+          <div id="email" class="form-text"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Número</label>
+          <input
+            name="phone"
+            type="number"
+            class="form-control"
+            id="phone"
+            value="<%=contato.phone%>"
+          />
+          <div id="phone" class="form-text"></div>
+        </div>
+        <!-- <div class="mb-3 form-check"> -->
+        <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+        <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+        <!-- </div> -->
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </form>
+    </div>
+    <div class="cow-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer')%>
