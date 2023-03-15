@@ -218,3 +218,57 @@ Para injetar variaveis ou até mesmo outros trechos de "código" html, basta usa
  <%# para comentários %>
  <%- include(caminho/arquivo) %>
 ```
+
+
+## Helmet e CSRF
+
+São dois pacotes de segurança, importantes para a segurança do seu site. Primeiramente o Helmet, ele é recomendado pelo próprio site do express, para que seja usado, só é preciso instalar o pacote e usá-lo no app.
+
+```Js
+// * pacote de segurança recomendado pelo express
+const helmet = require('helmet');
+app.use(helmet())
+```
+
+Já o csrf, ele é usado para impedir, que outras pessoas realizem "posts" de dados no seu banco, de qualquer outro lugar. Ele faz isso criando tokens para seus inputs, e só aceitando os inputs caso ele mesmo detecte que esse token é válido, e esses tokens são modificados sempre que a página é aberta. 
+
+Para usá-lo, primeiro o importe:
+
+```Js
+const csurf = require('csurf')
+```
+
+Também será necessário criar middlewares:
+
+```Js
+app.use(csurf())
+app.use(csrfMiddleware)
+app.use(checkCSRFError)
+```
+
+Os middlewares, podem ser algo como:
+
+
+```Js
+exports.checkCSRFError = (err, req, res, next) =>{
+    if(err && err.code == 'EBADCSRFTOKEN'){
+        return res.render('404');
+    }
+    next()
+}
+
+exports.csrfMiddleware = (req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next()
+}
+```
+
+E na hora de usá-lo, você deve adcionar um input hidden no seu formulário:
+
+```html
+<input type="hidden" name="_csrf" value="<%=csrfToken%>">
+```
+
+Assim, ele irá sempre verificar, caso aquele input não seja valido, vc pode enviar ele para alguma pagina de erro, como no caso eu enviei par aa página de nome 404. 
+
+Além de que é preciso usar ejs até onde eu entendi.
