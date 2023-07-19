@@ -2,6 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import { Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import History from './services/history';
 import GlobalStyle from './styles/GlobalStyle';
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <Routes />
       <GlobalStyle />
+      <ToastContainer autoClose={3000} />
     </Router>
   );
 }
